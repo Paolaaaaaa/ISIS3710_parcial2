@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { UsuarioEntity } from '../usuario/usuario.entity';
+import { AlbumEntity } from '../album/album.entity';
 
 @Entity()
 export class FotoEntity {
@@ -15,4 +16,6 @@ export class FotoEntity {
   iso: number;
   @ManyToOne(() => UsuarioEntity, (user) => user.fotos)
   usuario: UsuarioEntity;
+  @ManyToOne(() => AlbumEntity, (album) => album.fotos)
+  album: AlbumEntity;
 }

@@ -7,22 +7,20 @@ import {
 } from '../../shared/errors/business-errors';
 import { UsuarioEntity } from './usuario.entity';
 @Injectable()
-export class UsurioService {
+export class UsuarioService {
   constructor(
     @InjectRepository(UsuarioEntity)
     private readonly usuarioRepository: Repository<UsuarioEntity>,
   ) {}
 
   async create(usuario: UsuarioEntity): Promise<UsuarioEntity> {
-    if (usuario. > 6400 || usuario.iso < 100) {
+    if (usuario.telefono.toString.length == 10) {
       throw new BusinessLogicException(
         'The usuario iso is not valid',
         BusinessError.PRECONDITION_FAILED,
       );
     }
 
-
-    
     return await this.usuarioRepository.save(usuario);
   }
 
@@ -36,7 +34,7 @@ export class UsurioService {
     });
     if (!usuario)
       throw new BusinessLogicException(
-        'The usuario with given name was not found',
+        'The usuario with given id was not found',
         BusinessError.NOT_FOUND,
       );
     return usuario;

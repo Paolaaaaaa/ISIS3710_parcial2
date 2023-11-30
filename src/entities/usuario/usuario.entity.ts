@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany , ManyToOne} from 'typeorm';
 import { FotoEntity } from '../foto/foto.entity';
+import { AlbumEntity } from '../album/album.entity';
 
 @Entity()
 export class UsuarioEntity {
@@ -9,6 +10,10 @@ export class UsuarioEntity {
   nombre: string;
   @Column()
   telefono: number;
-  @OneToMany(() => FotoEntity, (foto) => foto.user)
-  fotos: UsuarioEntity[];
+  @OneToMany(() => FotoEntity, (foto) => foto.usuario)
+  fotos: FotoEntity[];
+
+  @OneToMany(() => AlbumEntity, (album) => album.usuario)
+  albunes: AlbumEntity[];
+  
 }
