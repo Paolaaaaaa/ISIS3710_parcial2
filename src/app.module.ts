@@ -1,9 +1,27 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { FotoEntity } from './entities/foto/foto.entity';
+import { FotoModule } from './entities/foto/foto.module';
 
 @Module({
-  imports: [],
+  imports: [
+    FotoModule,
+
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'postgres',
+      database: 'parcial2',
+      entities: [FotoEntity, , ],
+      dropSchema: true,
+      synchronize: true,
+      keepConnectionAlive: true,
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
