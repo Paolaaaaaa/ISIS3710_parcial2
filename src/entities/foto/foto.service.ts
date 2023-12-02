@@ -47,7 +47,7 @@ export class FotoService {
     });
     if (!foto)
       throw new BusinessLogicException(
-        'The foto with given name was not found',
+        'The foto with given id was not found',
         BusinessError.NOT_FOUND,
       );
     return foto;

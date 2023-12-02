@@ -14,9 +14,9 @@ export class UsuarioService {
   ) {}
 
   async create(usuario: UsuarioEntity): Promise<UsuarioEntity> {
-    if (usuario.telefono.toString.length == 10) {
+    if (usuario.telefono.length !== 10) {
       throw new BusinessLogicException(
-        'The usuario iso is not valid',
+        'The usuario number is not valid',
         BusinessError.PRECONDITION_FAILED,
       );
     }

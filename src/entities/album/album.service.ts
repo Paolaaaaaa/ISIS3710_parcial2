@@ -9,7 +9,7 @@ import { AlbumEntity } from './album.entity';
 import { FotoEntity } from '../foto/foto.entity';
 
 @Injectable()
-export class FotoService {
+export class AlbumService {
   constructor(
     @InjectRepository(AlbumEntity)
     private readonly albumRepository: Repository<AlbumEntity>,
@@ -20,17 +20,12 @@ export class FotoService {
   async create(album: AlbumEntity): Promise<AlbumEntity> {
     if (!album.titulo) {
       throw new BusinessLogicException(
-        'The album iso is not valid',
+        'The album title is not valid',
         BusinessError.PRECONDITION_FAILED,
       );
     }
 
-    
-    return await this.albumRepository.save(album);}
-  
-
-  async findAll(): Promise<AlbumEntity[]> {
-    return await this.albumRepository.find();
+    return await this.albumRepository.save(album);
   }
 
   async findOne(id: string): Promise<AlbumEntity> {
@@ -45,33 +40,48 @@ export class FotoService {
     return album;
   }
 
-
-  async addDonationInstitution(
-    foto: FotoEntity
-    albumid,
-  ): Promise<Record<string, any>> {
-    const new_foto: FotoEntity =
-      await this.fotoRepository.save(foto);
+  async addPhotoToAlbum(
+    foto: FotoEntity,
+    albumid: string,
+  ): Promise<AlbumEntity> {
+    const new_foto: FotoEntity = await this.fotoRepository.save(foto);
     if (!new_foto)
       throw new BusinessLogicException(
-        'The foto has a error',
+        'The foto is not valid ',
+        BusinessError.BAD_REQUEST,
+      );
+
+    const album: AlbumEntity = await this.albumRepository.findOne({
+      where: { id: albumid },
+      relations: ['fotos'],
+    });
+    if (!album) {
+      throw new BusinessLogicException(
+        'The album  id is not valid',
         BusinessError.NOT_FOUND,
       );
-      return new_foto
-    
+    }
+    album.fotos.push(new_foto);
+    new_foto.album = album;
+    await this.fotoRepository.save(new_foto);
+
+    return await this.albumRepository.save(album);
   }
 
-
-
-
- 
   async delete(id: string): Promise<void> {
     const album: AlbumEntity = await this.albumRepository.findOne({
       where: { id: id },
+      relations: ['fotos'],
     });
     if (!album)
       throw new BusinessLogicException(
         'The album with the given id was not found',
+        BusinessError.NOT_FOUND,
+      );
+
+    if (!album.fotos || album.fotos.length !== 0)
+      throw new BusinessLogicException(
+        'The album with fotos cant be deleted',
         BusinessError.NOT_FOUND,
       );
 
