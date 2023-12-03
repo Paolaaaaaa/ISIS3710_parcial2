@@ -7,6 +7,7 @@ import {
 } from '../../shared/errors/business-errors';
 import { AlbumEntity } from './album.entity';
 import { FotoEntity } from '../foto/foto.entity';
+import { classToPlain } from 'class-transformer';
 
 @Injectable()
 export class AlbumService {
@@ -43,7 +44,7 @@ export class AlbumService {
   async addPhotoToAlbum(
     foto: FotoEntity,
     albumid: string,
-  ): Promise<AlbumEntity> {
+  ): Promise<Record<string, any>> {
     const new_foto: FotoEntity = await this.fotoRepository.save(foto);
     if (!new_foto)
       throw new BusinessLogicException(
@@ -64,8 +65,9 @@ export class AlbumService {
     album.fotos.push(new_foto);
     new_foto.album = album;
     await this.fotoRepository.save(new_foto);
+    const album_ret = await this.albumRepository.save(album);
 
-    return await this.albumRepository.save(album);
+    return classToPlain(album_ret, { excludePrefixes: ['fotos'] });
   }
 
   async delete(id: string): Promise<void> {
@@ -82,7 +84,7 @@ export class AlbumService {
     if (!album.fotos || album.fotos.length !== 0)
       throw new BusinessLogicException(
         'The album with fotos cant be deleted',
-        BusinessError.NOT_FOUND,
+        BusinessError.PRECONDITION_FAILED,
       );
 
     await this.albumRepository.remove(album);

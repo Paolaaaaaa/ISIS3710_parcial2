@@ -1,0 +1,1917 @@
+{
+	"info": {
+		"_postman_id": "e8495e60-2c95-4292-9776-be0a5abe1e4d",
+		"name": "Parcial2",
+		"description": "A continuación se presenta la documentación de cada recurso junto con unos test relacionados a los servicios. Cada carpeta tiene una descripción en la que se proporciona detalles.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27530546"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Documentación [revisar la descripción]",
+					"item": [
+						{
+							"name": "Create Users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.globals.set(\"user_id\", data.id);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"marta sandia\",\r\n    \"telefono\":\"1234567890\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/usuarios",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"usuarios"
+									]
+								},
+								"description": "- Crear Un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: POST\n        \n    - **body:** json con información relacionada a \\[nombre, telefono\\]"
+							},
+							"response": []
+						},
+						{
+							"name": "Get User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/usuarios/{{user_id}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"usuarios",
+										"{{user_id}}"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/usuarios/",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"usuarios",
+										""
+									]
+								},
+								"description": "- Obtener usuarios\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						}
+					],
+					"description": "El recurso usuario presenta 3 servicios:\n\n- Crear un usuario.\n- Obtener un usuario.\n- Obtener el listado de usuarios.\n    \n\nPara acceder a este recurso es cuestión de hacer uso del siguiente formato para cada uno de los servicios.\n\n- Crear Un usuario:\n    \n    - **url**: http://{{host}}:{{port}}/api/v1/usuarios/\n        \n    - **metodo**: POST\n    - **body:** json con información relacionada a \\[nombre, telefono\\]\n- Obtener un usuario:\n    \n    - **url**: http://{{host}}:{{port}}/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n    - **metodo**: GET\n    - **body:** vacio\n- Obtener usuarios\n    \n    - **url**: http://{{host}}:{{port}}/api/v1/usuarios/\n        \n    - **metodo**: GET\n    - **body:** vacio\n\nA continuación puede ver ejemplos con los request en esta carpeta."
+				},
+				{
+					"name": "API Test [Revisar la descripción]",
+					"item": [
+						{
+							"name": "Create Users 1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.globals.set(\"user_id\", data.id);\r",
+											"\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"   pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"marta sandia 1\",\r\n    \"telefono\":\"1234567890\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/usuarios",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"usuarios"
+									]
+								},
+								"description": "- prueba donde se ha creado el usuario correctamente y se espera un código de respuesta 201. Además, se espera que el retorno incluya el usuario con el ID asignado. Estos tests se han llevado a cabo para demostrar que la creación de usuarios funciona correctamente."
+							},
+							"response": []
+						},
+						{
+							"name": "Create Users 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.globals.set(\"user_id_1\", data.id);\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"   pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"usuario 2\",\r\n    \"telefono\":\"1234567890\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/usuarios",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"usuarios"
+									]
+								},
+								"description": "- prueba donde se ha creado el usuario correctamente y se espera un código de respuesta 201. Además, se espera que el retorno incluya el usuario con el ID asignado. Estos tests se han llevado a cabo para demostrar que la creación de usuarios funciona correctamente."
+							},
+							"response": []
+						},
+						{
+							"name": "Create Users Invalid",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.test(\"Status code is 412\", function () {\r",
+											"   pm.response.to.have.status(412);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"marta sandia\",\r\n    \"telefono\":\"123456789\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/usuarios",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"usuarios"
+									]
+								},
+								"description": "- prueba en la que una regla de negocio no se cumple. Aquí, se espera que se retorne un código de respuesta 412, junto con un mensaje que indique que el número no es correcto. Este caso se ha seleccionado para verificar que el código enviado sea el correcto, y también para demostrar que se validan las reglas de negocio. El nombre del test es:"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test('Number of users > ' + 0, function () {\r",
+											"   var data = pm.response.json()\r",
+											"   pm.expect(data.length).to.greaterThan(0)\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"   pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/usuarios",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"   pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/usuarios/{{user_id}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"usuarios",
+										"{{user_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Invalid",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.test(\"Status code is 404\", function () {\r",
+											"   pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/usuarios/4c3c33ff-0571-4952-87fc-ea0aa754030d",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"usuarios",
+										"4c3c33ff-0571-4952-87fc-ea0aa754030d"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "El recurso usuariose han realizado 6 pruebas:\n\n- 3 pruebas para la creación de un usuario:\n    - 2 pruebas donde se ha creado el usuario correctamente y se espera un código de respuesta 201. Además, se espera que el retorno incluya el usuario con el ID asignado. Estos tests se han llevado a cabo para demostrar que la creación de usuarios funciona correctamente. Los nombres de los tests son:\n        - \"Create Users 1\"\n        - \"Create Users 2\"\n    - 1 prueba en la que una regla de negocio no se cumple. Aquí, se espera que se retorne un código de respuesta 412, junto con un mensaje que indique que el número no es correcto. Este caso se ha seleccionado para verificar que el código enviado sea el correcto, y también para demostrar que se validan las reglas de negocio. El nombre del test es:\n        - \"Create users invalid\".\n- 2 prueba para obtener un usuario.\n    - 1 prueba que obtiene el usuario creado con \"Create Users 1\". Aquí se espera obtener id, nombre y telefono. Se ha obtado hacer este test para validar que funciona el servicio de obtener un usuario. El test lo puede encontrar con el nómbre:\n        - Get User 1\n    - 1 prueba para intentar obtener un usuario invalido con un código que no puede ser asignado. Aquí se espera un código de 404 con un mensaje de : \"The usuario with given id was not found\". El proposito de este test es revisar que el código y el mensaje de claridad del problema. El test lo puede encontrar con el siguiente nómbre:\n        - Get user Invalid\n- 1 prueba Obtener el listado de usuarios.\n    - Como ya se ha realizado la creación de 2 usuarios se espera obtener una lista con dos usuarios. y un código de 200. El test se puede encontrar con el siguiente nómbre:\n        - Get Users\n\nA continuación puede ver ejemplos con los test en esta carpeta."
+				}
+			],
+			"description": "En esta carpeta se presenta Documentación y test relacionados a el recurso usuarios."
+		},
+		{
+			"name": "Red Social",
+			"item": [
+				{
+					"name": "Documentación [revisar la descripción]",
+					"item": [
+						{
+							"name": "Create redes sociales",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.globals.set(\"redSocial_id\", data.id);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"Sandias de Maria\",\r\n    \"slogan\":\"Sonria que con sandias de maria será otro día.\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/redesSociales/",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"redesSociales",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "El recurso usuario presenta 1 servicio:\n\n- Crear un Red Social.\n    \n\nPara acceder a este recurso es cuestión de hacer uso del siguiente formato para cada uno de los servicios.\n\n- Crear Un Red Social:\n    \n    - **url**: http://{{host}}:{{port}}/api/v1/redesSociales/\n        \n    - **metodo**: POST\n    - **body:** json con información relacionada a \\[nombre, slogan\\]\n\nA continuación puede ver ejemplos con los request en esta carpeta."
+				},
+				{
+					"name": "API Test [Revisar la descripción]",
+					"item": [
+						{
+							"name": "Create redes sociales",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.globals.set(\"redSocial_id\", data.id);\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"   pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"Sandias de Maria\",\r\n    \"slogan\":\"Sonria que con sandias de maria será otro día.\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/redesSociales/",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"redesSociales",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create redes sociales Invalid",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.globals.set(\"redSocial_id\", data.id);\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"   pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"Sandias de Maria\",\r\n    \"slogan\":\"Sonr.\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/redesSociales/",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"redesSociales",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "El recurso usuariose han realizado 2 pruebas:\n\n- 2 pruebas para la creación de un una red social:\n    - 1 pruebas donde se ha creado la red social correctamente y se espera un código de respuesta 201. Además, se espera que el retorno incluya el usuario con el ID asignado. Estos tests se han llevado a cabo para demostrar que la creación de red social funciona correctamente. Los nombres de los tests son:\n        - \"Create redes sociales\"\n    - 1 prueba en la que una regla de negocio no se cumple. Aquí, se espera que se retorne un código de respuesta 412, junto con un mensaje que indique que el slogan no es correcto. Este caso se ha seleccionado para verificar que el código enviado sea el correcto, y también para demostrar que se validan las reglas de negocio. El nombre del test es:\n        - \"Create redes sociales invalid\".\n\nA continuación puede ver ejemplos con los test en esta carpeta."
+				}
+			],
+			"description": "En esta carpeta se presenta Documentación y test relacionados a el recurso red social."
+		},
+		{
+			"name": "Foto",
+			"item": [
+				{
+					"name": "Documentación [revisar la descripción]",
+					"item": [
+						{
+							"name": "Create fotos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.globals.set(\"foto_id\", data.id);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"velObturacion\": 3,\r\n\r\n\r\n \"apertura\": 2,\r\n\r\n\r\n  \"iso\": 101,\r\n\r\n   \"fecha\": \"2020/08/20\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos"
+									]
+								},
+								"description": "- Crear Un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: POST\n        \n    - **body:** json con información relacionada a \\[nombre, telefono\\]"
+							},
+							"response": []
+						},
+						{
+							"name": "Get foto",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos/{{foto_id}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos",
+										"{{foto_id}}"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Fotos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos/",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos",
+										""
+									]
+								},
+								"description": "- Obtener usuarios\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "delete foto",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos/{{foto_id}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos",
+										"{{foto_id}}"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						}
+					],
+					"description": "El recurso usuario presenta 4 servicios:\n\n- Crear una foto.\n- Obtener una foto.\n- Obtener el listado de fotos.\n- Eliminar una foto\n    \n\nPara acceder a este recurso es cuestión de hacer uso del siguiente formato para cada uno de los servicios.\n\n- Crear Una foto:\n    - **url**: http://{{host}}:{{port}}/api/v1/fotos/\n    - **metodo**: POST\n    - **body:** json con información relacionada a \\[velObturacion, apertura, iso, fecha\\]\n- Obtener una foto:\n    \n    - **url**: http://{{host}}:{{port}}/api/v1/fotos/{{fotoId}}\n        \n        - fotoId: hace referencia al id de la foto\n            \n    - **metodo**: GET\n    - **body:** vacio\n- Obtener fotos\n    - **url**: http://{{host}}:{{port}}/api/v1/fotos/\n    - **metodo**: GET\n    - **body:** vacio\n- Eliminar una foto\n    \n    - **url**: http://{{host}}:{{port}}/api/v1/fotos/{{fotoid}}\n        \n        - fotoId: hace referencia al id de la foto\n            \n    - **metodo**: DELETE\n    - **body:** vacio\n\nA continuación puede ver ejemplos con los request en esta carpeta."
+				},
+				{
+					"name": "API Test [Revisar la descripción]",
+					"item": [
+						{
+							"name": "Create foto1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.globals.set(\"foto_id\", data.id);\r",
+											"\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"   pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"velObturacion\": 3,\r\n\r\n\r\n \"apertura\": 2,\r\n\r\n\r\n  \"iso\": 101,\r\n\r\n   \"fecha\": \"2020/08/20\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos"
+									]
+								},
+								"description": "- Crear Un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: POST\n        \n    - **body:** json con información relacionada a \\[nombre, telefono\\]"
+							},
+							"response": []
+						},
+						{
+							"name": "Create foto2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.globals.set(\"foto_id_2\", data.id);\r",
+											"\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"   pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"velObturacion\": 3,\r\n\r\n\r\n \"apertura\": 2,\r\n\r\n\r\n  \"iso\": 101,\r\n\r\n   \"fecha\": \"2022/08/25\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos"
+									]
+								},
+								"description": "- Crear Un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: POST\n        \n    - **body:** json con información relacionada a \\[nombre, telefono\\]"
+							},
+							"response": []
+						},
+						{
+							"name": "Create foto Invalid iso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"\r",
+											"\r",
+											"pm.test(\"Status code is 412\", function () {\r",
+											"   pm.response.to.have.status(412);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"velObturacion\": 3,\r\n\r\n\r\n \"apertura\": 2,\r\n\r\n\r\n  \"iso\": 0,\r\n\r\n   \"fecha\": \"2022/08/25\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos"
+									]
+								},
+								"description": "- Crear Un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: POST\n        \n    - **body:** json con información relacionada a \\[nombre, telefono\\]"
+							},
+							"response": []
+						},
+						{
+							"name": "Create foto Invalid apertura",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"\r",
+											"\r",
+											"pm.test(\"Status code is 412\", function () {\r",
+											"   pm.response.to.have.status(412);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"velObturacion\": 3,\r\n\r\n\r\n \"apertura\": 33,\r\n\r\n\r\n  \"iso\": 100,\r\n\r\n   \"fecha\": \"2022/08/25\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos"
+									]
+								},
+								"description": "- Crear Un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: POST\n        \n    - **body:** json con información relacionada a \\[nombre, telefono\\]"
+							},
+							"response": []
+						},
+						{
+							"name": "Create foto Invalid velObturacion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"\r",
+											"\r",
+											"pm.test(\"Status code is 412\", function () {\r",
+											"   pm.response.to.have.status(412);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"velObturacion\": 1,\r\n\r\n\r\n \"apertura\": 32,\r\n\r\n\r\n  \"iso\": 100,\r\n\r\n   \"fecha\": \"2022/08/25\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos"
+									]
+								},
+								"description": "- Crear Un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: POST\n        \n    - **body:** json con información relacionada a \\[nombre, telefono\\]"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Fotos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test('Number of fotos > ' + 0, function () {\r",
+											"   var data = pm.response.json()\r",
+											"   pm.expect(data.length).to.greaterThan(0)\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"   pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos/",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos",
+										""
+									]
+								},
+								"description": "- Obtener usuarios\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "Get foto 1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"   pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos/{{foto_id}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos",
+										"{{foto_id}}"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "Get foto 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"   pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos/{{foto_id_2}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos",
+										"{{foto_id_2}}"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "Get foto invalid",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.test(\"Status code is 404\", function () {\r",
+											"   pm.response.to.have.status(404);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos/4c3c33ff-0571-4952-87fc-ea0aa754030d",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos",
+										"4c3c33ff-0571-4952-87fc-ea0aa754030d"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "delete foto",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"   pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos/{{foto_id}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos",
+										"{{foto_id}}"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "delete foto2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"   pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos/{{foto_id_2}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos",
+										"{{foto_id_2}}"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "delete foto invalid",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test(\"Status code is 404\", function () {\r",
+											"   pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos/4c3c33ff-0571-4952-87fc-ea0aa754030d",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos",
+										"4c3c33ff-0571-4952-87fc-ea0aa754030d"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Fotos empty",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test('Number of fotos > ' + 0, function () {\r",
+											"   var data = pm.response.json()\r",
+											"   pm.expect(data.length).to.equals(0)\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"   pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/fotos/",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"fotos",
+										""
+									]
+								},
+								"description": "- Obtener usuarios\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						}
+					],
+					"description": "El recurso usuariose han realizado 13 pruebas:\n\n- 5 pruebas para la creación de un usuario:\n    \n    - 2 pruebas donde se ha creado el foto correctamente y se espera un código de respuesta 201. Además, se espera que el retorno incluya los datos de la foto con el ID asignado. Estos tests se han llevado a cabo para demostrar que la creación de fotos funciona correctamente. Los nombres de los tests son:\n        \n        - \"Create foto 1\"\n        - \"Create foto 2\"\n    - 3 prueba en la que una regla de negocio no se cumple. Aquí, se espera que se retorne un código de respuesta 412, junto con un mensaje que indique cual es el problema. Este caso se ha seleccionado para verificar que el código enviado sea (412 en vez de 500), y también para demostrar que se validan las reglas de negocio. El nombre del test es:\n        - \"Create foto invalid iso\".\n        - Create foto invalid apertura\n        - create foto invalid velobturacion\n- 2 prueba Obtener el listado de fotos.\n    - Como ya se ha realizado la creación de 2 fotos se espera obtener una lista con dos usuarios. y un código de 200. El test se puede encontrar con el siguiente nómbre:\n        - Get fotos\n    - Después de eliminar 2 fotos se quiere mirar que estas no existan más, entonces se debe obtener un código de 200, junto con una lista vacia. El test tiene un nombre :\n        - Get Fotos empty\n- 3 pruebas de obtener una foto por id\n    - 2 prueba que obtiener la foto creado con \"Create foto 1\" y en \"Create foto 2\". Aquí se espera obtener id, iso , apertura y velobturacion. Se ha obtado hacer este test para validar que funciona el servicio de obtener una foto en espeficico. El test lo puede encontrar con el nómbre:\n        - Get foto 1\n        - Get foto 2\n    - 1 prueba para intentar obtener un usuario invalido con un código que no puede ser asignado. Aquí se espera un código de 404 con un mensaje de : \"The foto with given id was not found\". El proposito de este test es revisar que el código y el mensaje de claridad del problema. El test lo puede encontrar con el siguiente nómbre:\n        - Get foto Invalid\n- 3 pruebas de eliminación de fotos\n    - 2 prueba para eliminar las foto creado con \"Create foto 1\" y en \"Create foto 2\". Aquí se espera un código 200. Se ha obtado hacer este test para validar que funciona el servicio de eliminación de fotos. El test lo puede encontrar con el nómbre:\n        - delete foto 1\n        - delete foto 2\n    - 1 prueba para intentar eliminar una foto invalida con un código que no puede ser asignado. Aquí se espera un código de 404 con un mensaje de : \"The foto with given id was not found\". El proposito de este test es revisar que el código y el mensaje de claridad del problema. El test lo puede encontrar con el siguiente nómbre:\n        - Get foto Invalid\n\nA continuación puede ver ejemplos con los test en esta carpeta."
+				}
+			],
+			"description": ".-"
+		},
+		{
+			"name": "Album",
+			"item": [
+				{
+					"name": "Documentación [revisar la descripción]",
+					"item": [
+						{
+							"name": "Create album",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.globals.set(\"album_id\", data.id);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"fechaInicio\": \"2023/5/1\",\r\n\r\n\r\n \"fechaFin\": \"2023/5/12\",\r\n\r\n\r\n\r\n   \"titulo\": \"Album muy bonito\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums"
+									]
+								},
+								"description": "- Crear Un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: POST\n        \n    - **body:** json con información relacionada a \\[nombre, telefono\\]"
+							},
+							"response": []
+						},
+						{
+							"name": "Create album empty",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.globals.set(\"album_id_empty\", data.id);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"fechaInicio\": \"2023/5/1\",\r\n\r\n\r\n \"fechaFin\": \"2023/5/12\",\r\n\r\n\r\n\r\n   \"titulo\": \"Album muy bonito\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums"
+									]
+								},
+								"description": "- Crear Un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: POST\n        \n    - **body:** json con información relacionada a \\[nombre, telefono\\]"
+							},
+							"response": []
+						},
+						{
+							"name": "Get album",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums/{{album_id}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums",
+										"{{album_id}}"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "add foto to album",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"velObturacion\": 3,\r\n\r\n\r\n \"apertura\": 2,\r\n\r\n\r\n  \"iso\": 101,\r\n\r\n   \"fecha\": \"2020/08/20\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums/{{album_id}}/foto",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums",
+										"{{album_id}}",
+										"foto"
+									]
+								},
+								"description": "- Obtener usuarios\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "delete album",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums/{{album_id_empty}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums",
+										"{{album_id_empty}}"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						}
+					],
+					"description": "El recurso usuario presenta 4 servicios:\n\n- Crear un album.\n- Obtener un album.\n- adicionar una foto en un album.\n- Eliminar un album\n    \n\nPara acceder a este recurso es cuestión de hacer uso del siguiente formato para cada uno de los servicios.\n\n- Crear Un album:\n    - **url**: http://{{host}}:{{port}}/api/v1/albums/\n    - **metodo**: POST\n    - **body:** json con información relacionada a \\[fecha inicio, fecha de fin, iso, titulo\\]\n- Obtener un album:\n    - **url**: http://{{host}}:{{port}}/api/v1/albums/{{albumId}}\n        - albumId: hace referencia al id del album\n    - **metodo**: GET\n    - **body:** vacio\n- Adicionar una foto a un album\n    \n    - **url**: http://{{host}}:{{port}}/api/v1/albums/{{albumId}}/foto\n        \n    - **metodo**: GET\n    - **body:** datos de la foto \\[velObturacion, iso, fecha, apertura\\]\n        \n- Eliminar una album\n    \n    - **url**: http://{{host}}:{{port}}/api/v1/albums/{{albumid}}\n        \n    - **metodo**: DELETE\n    - **body:** vacio\n\nA continuación puede ver ejemplos con los request en esta carpeta."
+				},
+				{
+					"name": "API Test [Revisar la descripción]",
+					"item": [
+						{
+							"name": "Create album",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.globals.set(\"album_id\", data.id);\r",
+											"\r",
+											"\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"   pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"fechaInicio\": \"2023/5/1\",\r\n\r\n\r\n \"fechaFin\": \"2023/5/12\",\r\n\r\n\r\n\r\n   \"titulo\": \"Album muy bonito\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums"
+									]
+								},
+								"description": "- Crear Un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: POST\n        \n    - **body:** json con información relacionada a \\[nombre, telefono\\]"
+							},
+							"response": []
+						},
+						{
+							"name": "Create album 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.globals.set(\"album_id_2\", data.id);\r",
+											"\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"   pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"fechaInicio\": \"2023/5/1\",\r\n\r\n\r\n \"fechaFin\": \"2023/5/12\",\r\n\r\n\r\n\r\n   \"titulo\": \"Album muy bonito 2\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums"
+									]
+								},
+								"description": "- Crear Un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: POST\n        \n    - **body:** json con información relacionada a \\[nombre, telefono\\]"
+							},
+							"response": []
+						},
+						{
+							"name": "Create album invalid",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"\r",
+											"\r",
+											"pm.test(\"Status code is 412\", function () {\r",
+											"   pm.response.to.have.status(412);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"fechaInicio\": \"2023/5/1\",\r\n\r\n\r\n \"fechaFin\": \"2023/5/12\",\r\n\r\n\r\n\r\n   \"titulo\": \"\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums"
+									]
+								},
+								"description": "- Crear Un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: POST\n        \n    - **body:** json con información relacionada a \\[nombre, telefono\\]"
+							},
+							"response": []
+						},
+						{
+							"name": "Get album 1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"   pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums/{{album_id}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums",
+										"{{album_id}}"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "Get album 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"   pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums/{{album_id_2}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums",
+										"{{album_id_2}}"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "Get album invalid",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.test(\"Status code is 404\", function () {\r",
+											"   pm.response.to.have.status(404);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums/4c3c33ff-0571-4952-87fc-ea0aa754030d",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums",
+										"4c3c33ff-0571-4952-87fc-ea0aa754030d"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "add foto to album",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"   pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"velObturacion\": 3,\r\n\r\n\r\n \"apertura\": 2,\r\n\r\n\r\n  \"iso\": 101,\r\n\r\n   \"fecha\": \"2020/08/20\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums/{{album_id}}/foto",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums",
+										"{{album_id}}",
+										"foto"
+									]
+								},
+								"description": "- Obtener usuarios\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "add foto to invalid album",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json()\r",
+											"pm.test(\"Status code is 404\", function () {\r",
+											"   pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"velObturacion\": 3,\r\n\r\n\r\n \"apertura\": 2,\r\n\r\n\r\n  \"iso\": 101,\r\n\r\n   \"fecha\": \"2020/08/20\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums/4c3c33ff-0571-4952-87fc-ea0aa754030d/foto",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums",
+										"4c3c33ff-0571-4952-87fc-ea0aa754030d",
+										"foto"
+									]
+								},
+								"description": "- Obtener usuarios\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/\n        \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "delete empty album",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test(\"Status code is 204\", function () {\r",
+											"   pm.response.to.have.status(204);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums/{{album_id_2}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums",
+										"{{album_id_2}}"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						},
+						{
+							"name": "delete album with fotos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test(\"Status code is 412\", function () {\r",
+											"   pm.response.to.have.status(412);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/api/v1/albums/{{album_id}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"v1",
+										"albums",
+										"{{album_id}}"
+									]
+								},
+								"description": "- Obtener un usuario:\n    \n    - **url**: http:localhost:3000/api/v1/usuarios/{{id_user}}\n        \n        - id_user: hace referencia al id del usuario\n            \n    - **metodo**: GET\n        \n    - **body:** vacio"
+							},
+							"response": []
+						}
+					],
+					"description": "El recurso usuariose han realizado 13 pruebas:\n\n- 3 pruebas para la creación de un album:\n    \n    - 2 pruebas donde se ha creado el album correctamente y se espera un código de respuesta 201. Además, se espera que el retorno incluya los datos de la foto con el ID asignado. Estos tests se han llevado a cabo para demostrar que la creación de albums funciona correctamente. Los nombres de los tests son:\n        - \"Create album\"\n        - \"Create album 2\"\n    - 1 prueba en la que una regla de negocio no se cumple. Aquí, se espera que se retorne un código de respuesta 412, junto con un mensaje que indique cual es el problema. Este caso se ha seleccionado para verificar que el código enviado sea (412 en vez de 500), se verifica que el título no sea vacio, y también para demostrar que se validan las reglas de negocio. El nombre del test es:\n        \n        - \"Create album invalid \".\n            \n- 3 pruebas de obtener una foto por id\n    \n    - 2 prueba que obtiener la foto creado con \"Create album \" y en \"Create album 2\". Aquí se espera obtener id, titulo, fecha de inicio y fecha de fiin . Se ha obtado hacer este test para validar que funciona el servicio de obtener un album en espeficico. El test lo puede encontrar con el nómbre:\n        \n        - Get album 1\n            \n        - Get album 2\n            \n- 2 pruebas de adicionar una foto a un album\n    \n    - 1 prueba para adicionar a un album existente, en el que se espera un código de 200. El proposito de este test es validar que se puede añadir una foto a un album cuando el album existe. El test lo puede encontrar con el nombre:\n        \n        - add foto to album\n            \n    - 1 prueba para adicionar a un album que no existe, en esta va a salir un código 400. El proposito es mirar que el programa no falle por esta petición o saque un código de 500. El test lo puede encontrar conel nómbre:\n        \n        - add foto to invalid album\n            \n- 2 pruebas de eliminación de albums\n    \n    - 1 prueba para intentar obtener un usuario invalido con un código que no puede ser asignado. Aquí se espera un código de 404 con un mensaje de : \"The album with given id was not found\". El proposito de este test es revisar que el código y el mensaje de claridad del problema. El test lo puede encontrar con el siguiente nómbre:\n        \n        - delete empty album\n            \n    - 1 pruebas de eliminación de album creado con \"Create album 1\" que tiene la foto creada en \"add foto to album\" . Aquí se espera un código 412. Se ha obtado hacer este test para validar que siga las reglas de negocio, solo se puede eliminar cuando el album no tiene fotos. El test lo puede encontrar con el nómbre:\n        \n        - Delete album with fotos\n            \n\nA continuación puede ver ejemplos con los test en esta carpeta."
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "port",
+			"value": "3000",
+			"type": "string"
+		},
+		{
+			"key": "host",
+			"value": "localhost",
+			"type": "string"
+		}
+	]
+}

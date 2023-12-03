@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, UseInterceptors, Param, Get, Body,Post } from "@nestjs/common";
+import { Controller, UseInterceptors, Param, Get, Body,Post, NotFoundException } from "@nestjs/common";
 import { BusinessErrorsInterceptor } from "../../shared/interceptors/business-errors.interceptors";
 import { plainToInstance } from 'class-transformer';
 import { UsuarioService } from "./usuario.service";
@@ -14,6 +14,9 @@ export class UsuarioController{
 
     @Get(':usuarioId/')
     async findUsuario(@Param('usuarioId') usuarioId:string){
+        if (!usuarioId) {
+            throw new NotFoundException('ID cannot be empty');
+          }
         return await this.usuarioService.findOne(usuarioId);
     }
 

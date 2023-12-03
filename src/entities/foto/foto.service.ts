@@ -22,7 +22,7 @@ export class FotoService {
       );
     }
 
-    if (foto.velObturacion > 250 || foto.iso < 2) {
+    if (foto.velObturacion > 250 || foto.velObturacion < 2) {
       throw new BusinessLogicException(
         'The foto Obturacion is not valid',
         BusinessError.PRECONDITION_FAILED,

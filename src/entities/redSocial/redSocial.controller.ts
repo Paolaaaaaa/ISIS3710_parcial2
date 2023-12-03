@@ -7,7 +7,7 @@ import { RedSocialDTO } from "./redSocialDTO";
 import { RedSocialEntity } from "./redSocial.entity";
 
 
-@Controller('redeSociales')
+@Controller('redesSociales')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class RedSocialController{
     constructor(private readonly redSocialService: RedSocialService){}
@@ -16,7 +16,7 @@ export class RedSocialController{
 
 
     @Post('/')
-   async createUsuario(@Body() redSocialDTO: RedSocialDTO){
+   async createRedSocial(@Body() redSocialDTO: RedSocialDTO){
         const redSocial: RedSocialEntity = plainToInstance(RedSocialEntity, redSocialDTO);
 
        return await this.redSocialService.create(redSocial);

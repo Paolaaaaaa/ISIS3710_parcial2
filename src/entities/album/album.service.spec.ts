@@ -166,11 +166,12 @@ describe('AlbumService', () => {
       usuario: user,
       album: album_list[0],
     };
-    const album_edited = await service.addPhotoToAlbum(photo, album_list[0].id);
-    expect(album_edited.fotos[0].iso).toEqual(photo.iso);
-    expect(album_edited.fotos[0].apertura).toEqual(photo.apertura)
-
-
+    await service.addPhotoToAlbum(photo, album_list[0].id);
+    const album_edited = await repository.findOne({
+      where: { id: album_list[0].id },
+      relations: ['fotos'],
+    });
+    expect(album_edited.fotos.length).toEqual(1);
   });
 
   it('delete should delete an existing album and empty album', async () => {
